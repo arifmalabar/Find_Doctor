@@ -1,6 +1,25 @@
 import React from "react";
-import {User, Receipt21} from "react-native-svg";
-import {View, Text, ScrollView, StyleSheet, Button, FlatList} from "react-native";
+import {User, 
+  Receipt21, 
+  ArrowRight2, 
+  Notification, 
+  ScanBarcode, 
+  UserSearch, 
+  Courthouse,
+  Profile2User,
+  UserAdd,
+  NoteFavorite,
+  Math,
+  ChemicalGlass,
+  Menu
+} from "iconsax-react-native";
+import {
+  View, 
+  Text, 
+  ScrollView, 
+  StyleSheet, 
+  ImageBackground, 
+  Image} from "react-native";
 export default function App()
 {
   return (
@@ -13,13 +32,17 @@ export default function App()
 const Header = () => {
   return (
       <View style={headerstyle.app_bar}>
-          <View style={headerstyle.user_option}>
-              <Text style={{fontWeight: "bold", fontSize: 18, color: "black"}}>Hello, Ridho Arif</Text>
-              <Text>NoRm 082323444</Text>
-          </View>
-          <View>
-            <Text>Foto User</Text>
-          </View>
+        <View style={headerstyle.user_option}>
+            <Text style={{fontWeight: "bold", fontSize: 18, color: "black"}}>Hello, Ridho Arif</Text>
+            <Text>NoRm 082323444</Text>
+        </View>
+        <View>
+          <Image
+            style={{height: 50, width: 50, borderRadius: 40, borderColor: "#1873ac", borderWidth: 3}}
+            imageStyle={{ height: 10, width: 10}}
+            source={require('./assets/account.jpeg')}
+          />
+        </View>
       </View>
   );
 }
@@ -33,65 +56,159 @@ const MainBody = () => {
 const DataMenu = () => {
   return (
     <ScrollView style={bodyStyle.mainScroll}>
-      <View style={bodyStyle.jumbotron}>
-        <View style={{margin:10, padding: 10}}>
-          <Text style={bodyStyle.jumbotrontitle}>Total Antrian Hari Ini</Text>
-          <Text style={bodyStyle.jumbotronsubtitle}>92</Text>
-          <View style={tombol.tombol_antri}>
-            <View style={{margin:10}}>
-              <Text>Antri Sekarang</Text>
-            </View>
-          </View>
-        </View>
-      </View>
+      <Jumbotron/>
       <MenuList/>
-      <View>
-        <Text style={bodyStyle.judul}>Berita</Text>
-      </View>
+      <BottomJumbotron/>
     </ScrollView>
   );
 };
-const MenuList = ()=>{
-  const items = [
-    {title: "Dokter", icon: "user", color: "#C3C6CA"},
-    {title: "Dokter", icon: "user", color: "#C3C6CA"},
-    {title: "Dokter", icon: "user", color: "#C3C6CA"},
-    {title: "Dokter", icon: "user", color: "#C3C6CA"},
-  ]
+
+const Jumbotron = () => {
   return (
-    <View style={bodyStyle.listmenuitem}>
-      <FlatList
-      data={items}
-      numColumns={2}
-      renderItem={({ item }) => 
-        <View style={bodyStyle.menuitem}>
-          <View style={bodyStyle.item}>
-            <View style={bodyStyle.itemicon}>
-              <Text>{item.title}</Text>
+    <View style={jumbotron_style.body}>
+      <View>
+        <Text style={jumbotron_style.title_style}>Jumlah Antrian</Text>
+        <Text style={{color: "white", fontSize: 18}}>Total</Text>
+        <Text style={jumbotron_style.title_style}>90</Text>
+        <View style={jumbotron_style.tombol_mulai}>
+          <Text style={{ color: "#1873ac", fontWeight: "bold"}}>Mulai Antrian</Text>
+          <ArrowRight2
+            size="20"
+            color="#1873ac"
+          />
+        </View>
+      </View>
+      <View>
+        <View style={jumbotron_style.icon_container}>
+          <View style={jumbotron_style.icon_box}>
+            <View style={jumbotron_style.icon}>
+              <Notification
+                  variant="Bold"
+                  size="35"
+                  color="#1873ac"
+                />
             </View>
-            <Text>Dokter</Text>
+            <Text style={jumbotron_style.text_style}>Cek Antrian</Text>
+          </View>
+          <View style={jumbotron_style.icon_box}>
+            <View style={jumbotron_style.icon}>
+              <ScanBarcode
+                variant="Bold"
+                size="35"
+                color="#1873ac"
+              />
+            </View>
+            <Text style={jumbotron_style.text_style}>Scan</Text>
           </View>
         </View>
-        }
-        keyExtractor={(item) => item.id}
-      />
-      <FlatList
-        data={items}
-        numColumns={2}
-        renderItem={({ item }) => 
-        <View style={bodyStyle.menuitem}>
-          <View style={bodyStyle.item}>
-            <View style={bodyStyle.itemicon}>
-              <Text>{item.title}</Text>
-            </View>
-            <Text>Dokter</Text>
-          </View>
-        </View>
-        }
-        keyExtractor={(item) => item.id}
-      />
+      </View>
     </View>
-    
+  );
+}
+const BottomJumbotron = () => {
+  return (
+    <View style={{ marginTop: 30}}>
+      <ImageBackground
+        style={{height: 150}}
+        imageStyle={{borderRadius: 10}}
+        source={require('./assets/doctor-crossing-arms-while-holding-stethoscope-white-coat.jpg')}
+      >
+        <View style={{justifyContent: "flex-end", height: "100%", padding: 10}}>
+          <Text style={{ fontWeight: "500", fontSize: 20, color:"black"}}>Gunakan Find Doctor Untuk Daftar Poli</Text>
+          <Text>Find doctor aplikasi serba bisa!</Text>
+        </View>
+      </ImageBackground>
+    </View>
+  );
+}
+const MenuList = ()=>{
+  return (
+    <View style={menuStyle.body}>
+    <View style={menuStyle.icon_container}>
+      <View style={menuStyle.icon_box}>
+        <View style={menuStyle.icon}>
+          <UserSearch
+              variant="Bold"
+              size="35"
+              color="white"
+            />
+        </View>
+        <Text>Data Dokter</Text>
+      </View>
+      <View style={menuStyle.icon_box}>
+        <View style={menuStyle.icon}>
+          <Courthouse
+              variant="Bold"
+              size="35"
+              color="white"
+            />
+        </View>
+        <Text>Data Poli</Text>
+      </View>
+      <View style={menuStyle.icon_box}>
+        <View style={menuStyle.icon}>
+          <Profile2User
+              variant="Bold"
+              size="35"
+              color="white"
+            />
+        </View>
+        <Text>Cek Antrian</Text>
+      </View>
+      <View style={menuStyle.icon_box}>
+        <View style={menuStyle.icon}>
+          <UserAdd
+              variant="Bold"
+              size="35"
+              color="white"
+            />
+        </View>
+        <Text>Antrian</Text>
+      </View>
+    </View>
+    <View style={menuStyle.icon_container}>
+    <View style={menuStyle.icon_box}>
+        <View style={menuStyle.icon}>
+          <NoteFavorite
+              variant="Bold"
+              size="35"
+              color="white"
+            />
+        </View>
+        <Text>Cek Riwayat</Text>
+      </View>
+      <View style={menuStyle.icon_box}>
+        <View style={menuStyle.icon}>
+          <Receipt21
+              variant="Bold"
+              size="35"
+              color="white"
+            />
+        </View>
+        <Text>Layanan</Text>
+      </View>
+      <View style={menuStyle.icon_box}>
+        <View style={menuStyle.icon}>
+          <ChemicalGlass
+              variant="Bold"
+              size="35"
+              color="white"
+            />
+        </View>
+        <Text>Laboratorium</Text>
+      </View>
+      <View style={menuStyle.icon_box}>
+        <View style={menuStyle.icon}>
+          <Menu
+              variant="Bold"
+              size="35"
+              color="white"
+            />
+        </View>
+        <Text>Lainnya</Text>
+      </View>
+    </View>
+  </View>
   );
 }
 const MenuItem = () => {
@@ -119,9 +236,6 @@ const MenuItem = () => {
   );
 }
 const bodyStyle = StyleSheet.create({
-  main_body : {
-    backgroundColor: "#ECECEC",
-  },
   listmenuitem : {
     flexDirection: "row",
     justifyContent: "space-between"
@@ -150,11 +264,15 @@ const bodyStyle = StyleSheet.create({
     color: "white",
     marginBottom: 10
   },
-  judul : {
-    fontSize: 25,
+  title : {
+    fontSize: 20,
     fontWeight: "bold",
     color: "black"
   }, 
+  card_header : {
+    justifyContent: "space-between", 
+    flexDirection: "row"
+  },
   menuitem : {
     marginLeft: 10,
     marginRight: 10, 
@@ -189,16 +307,135 @@ const tombol = StyleSheet.create({
 });
 const headerstyle = StyleSheet.create({
   app_bar : {
-      justifyContent: "space-between",
-      padding: 10,
-      flexDirection: "row", 
+    justifyContent: "space-between",
+    padding: 10,
+    flexDirection: "row", 
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 1,
   },
   user_option : {
-      flexDirection: "column",
+    flexDirection: "column",
   },
   foto_user : {
-    borderRadius: 20,
-    width: 20,
-    height: 20,
+    borderRadius: 50,
+    padding: 12,
+    backgroundColor: "#1872ae"
   }
-})
+});
+const jumbotron_style = StyleSheet.create({
+  body: {
+    backgroundColor: "#1872ae",
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 15,
+    paddingBottom: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderRadius: 15
+  }, 
+  title_style : {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 23
+  },
+  antrian_style: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 23
+  },
+  text_style : {
+    color: "white",
+    fontSize: 12
+  },
+  tombol_mulai : {
+    flexDirection: "row",
+    padding: 5,
+    paddingLeft: 10,
+    backgroundColor: "white",
+    borderRadius: 15,
+    color: "white",
+    marginTop: 10,
+    justifyContent: "space-between"
+  },
+  icon_container : {
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  icon_box : {
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 15,
+    marginRight: 12
+  },
+  icon : { 
+    backgroundColor: "white", 
+    padding: 15, 
+    marginBottom: 5, 
+    borderRadius: 15 
+  }
+});
+const menuStyle = StyleSheet.create({
+  body : {
+    flexDirection: "column",
+    marginTop: 12
+  },
+  icon_container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  icon_box : {
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 15,
+    marginRight: 21,
+  },
+  icon : { 
+    backgroundColor: "#1873ac", 
+    padding: 15, 
+    marginBottom: 5, 
+    borderRadius: 15 
+  }
+});
+const itemHorizontal = StyleSheet.create({
+  cardItem: {
+    width: 280,
+  },
+  cardImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 5,
+  },
+  cardContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 15,
+  },
+  cardInfo: {
+    justifyContent: 'flex-end',
+    height: '100%',
+    gap: 10,
+    maxWidth: '60%',
+  },
+  cardTitle: {
+    fontSize: 14,
+    color: "#FFFFFF",
+  },
+  cardText: {
+    fontSize: 10,
+    color: "#FFFFFF",
+  },
+  cardIcon: {
+    backgroundColor: "#FFFFFF",
+    padding: 5,
+    color: "#FFFFFF",
+    borderWidth: 0.5,
+    borderRadius: 5,
+  },
+});
