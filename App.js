@@ -1,4 +1,5 @@
 import React from "react";
+import BottomMenu from "./app/BottomMenu";
 import {User, 
   Receipt21, 
   ArrowRight2, 
@@ -26,6 +27,9 @@ export default function App()
     <View>
       <Header/>
       <MainBody/>
+      <View style={{position: "relative", top: 20}}>
+        <BottomMenu />
+      </View>
     </View>
   )
 }
@@ -48,7 +52,7 @@ const Header = () => {
 }
 const MainBody = () => {
   return (
-    <View style={bodyStyle.main_body}>
+    <View style={{ height: '80%'}}>
       <DataMenu/>
     </View>
   );
