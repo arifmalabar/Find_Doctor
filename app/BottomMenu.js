@@ -57,7 +57,7 @@ export default function BottomMenu()
                     color={ (checkedMenu == "riwayat") ?  "#1873ac"  : "grey"  }
                     variant="Bold"
                 />
-                <Text style={ (checkedMenu == "riwayat") ? { color: "#1873ac" } : { color: "grey" } }>Riwayat</Text>
+                <Text style={ (checkedMenu == "riwayat") ? { color: "#1873ac" } : { color: "grey" } }>Buletin</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={menu_style.icon_box}
