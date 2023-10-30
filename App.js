@@ -30,7 +30,7 @@ export default function App()
     <View style={{flexDirection: "column", justifyContent: "space-between", flexGrow: 1}}>
       <Header/>
       <View style={{ height: '80%'}}>
-        <Buletin/>
+        <Antrian/>
       </View>
       <View style={{position: "relative"}}>
         <BottomMenu />
