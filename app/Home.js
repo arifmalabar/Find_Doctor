@@ -4,23 +4,35 @@ import {View, Text, ScrollView, StyleSheet, Button, AppBar} from "react-native";
 export default function Home()
 {
     return (
-        <View>
-            <header/>
-        </View>
-    )
-}
-const header = () => {
-    return (
-        <View style={headerstyle.app_bar}>
-            <View style={headerstyle.user_option}>
-                <Text>Hello, Ridho Arif Wicaksono</Text>
-                <Text>NoRm 082323444 - Pasien</Text>
+      <View style={{flexDirection: "column", justifyContent: "space-between", flexGrow: 1}}>
+        <View style={{ height: '100%'}}>
+          <View style={{flexDirection: "column", justifyContent: "space-between", flexGrow: 1}}>
+            <Header/>
+            <View style={{ height: '80%'}}>
+              <DataMenu/>
             </View>
-            <View>
-                <Text>Foto</Text>
-            </View>
+          </View>
         </View>
+      </View>
+      
     );
+}
+const Header = () => {
+  return (
+      <View style={headerstyle.app_bar}>
+        <View style={headerstyle.user_option}>
+            <Text style={{fontWeight: "bold", fontSize: 18, color: "black"}}>Hello, Ridho Arif</Text>
+            <Text>NoRm 082323444</Text>
+        </View>
+        <View>
+          <Image
+            style={{height: 50, width: 50, borderRadius: 40, borderColor: "#1873ac", borderWidth: 3}}
+            imageStyle={{ height: 10, width: 10}}
+            source={require('./assets/account.jpeg')}
+          />
+        </View>
+      </View>
+  );
 }
 const DataMenu = () => {
     return (
@@ -63,7 +75,30 @@ const DataMenu = () => {
       </ScrollView>
     );
   };
-  
+
+  const headerstyle = StyleSheet.create({
+    app_bar : {
+      justifyContent: "space-between",
+      padding: 8,
+      flexDirection: "row", 
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 1,
+    },
+    user_option : {
+      flexDirection: "column",
+    },
+    foto_user : {
+      borderRadius: 50,
+      padding: 12,
+      backgroundColor: "#1872ae"
+    }
+  });
 const bodyStyle = StyleSheet.create({
     mainScroll:{
       margin: 10
@@ -121,13 +156,3 @@ const bodyStyle = StyleSheet.create({
       color: "#3399ff"
     }, 
   });
-  const headerstyle = StyleSheet.create({
-    app_bar : {
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: 10
-    },
-    user_option : {
-        flexDirection: "column",
-    }
-  })

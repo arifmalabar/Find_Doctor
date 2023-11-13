@@ -1,7 +1,9 @@
 import React from "react";
 import {View, Text, ScrollView, TextInput, StyleSheet, FlatList, ImageBackground, Touchable, TouchableOpacity, Image} from "react-native";
 import { SearchNormal1 } from "iconsax-react-native";
+import { useNavigation } from "@react-navigation/native";
 import { ArtikelHangat, TopikHangat, ArtikelTerbaru, ArtikelTerbaruCategory } from "../data/data";
+
 export default function Buletin()
 {
     return (
@@ -28,6 +30,7 @@ const Header = () => {
     );
 };
 const Artikel = () => {
+    
     return (
         <View>
             <View>
@@ -76,6 +79,7 @@ const Topik = () => {
     );
 }
 const NewArtikel = () => {
+    const navigation = useNavigation();
     return (
         <View>
             <View>
@@ -88,7 +92,8 @@ const NewArtikel = () => {
                     data={ArtikelTerbaruCategory}
                     keyExtractor={(item) => ArtikelTerbaru}
                     renderItem={({item}) => 
-                        <TouchableOpacity style={NewArtikelStyle.kategori}>
+                        <TouchableOpacity 
+                        style={NewArtikelStyle.kategori}>
                             <Text>{item}</Text>
                         </TouchableOpacity>
                     } />
@@ -99,7 +104,9 @@ const NewArtikel = () => {
                     data={ArtikelHangat.data}
                     keyExtractor={(item) => item.id}
                     renderItem={({item}) => 
-                        <TouchableOpacity style={{flexDirection: "row", marginTop: 10}}>
+                        <TouchableOpacity 
+                            style={{flexDirection: "row", marginTop: 10}}
+                            onPress={() => navigation.navigate('ArticleDetail', {id: item.id})}>
                             <View>
                                 <Image source={{uri: item.image}} borderRadius={15} style={{height:80, width: 120}}></Image>
                             </View>

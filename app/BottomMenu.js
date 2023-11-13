@@ -11,6 +11,8 @@ import {
     Chart,
     User
 } from "iconsax-react-native";
+import { createStackNavigator, TransitionPresets } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 export default function BottomMenu()
 {
     const [checkedMenu, setCheckedMenu] = useState("home");

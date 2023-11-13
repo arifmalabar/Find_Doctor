@@ -24,37 +24,17 @@ import {
   ImageBackground, 
   Image} from "react-native";
 import Buletin from "./app/screen/Buletin";
+import { NavigationContainer } from '@react-navigation/native';
+import BottomNav from "./app/components/BottomNav";
 export default function App()
 {
   return (
-    <View style={{flexDirection: "column", justifyContent: "space-between", flexGrow: 1}}>
-      <Header/>
-      <View style={{ height: '80%'}}>
-        <Antrian/>
-      </View>
-      <View style={{position: "relative"}}>
-        <BottomMenu />
-      </View>
-    </View>
-  )
-}
-const Header = () => {
-  return (
-      <View style={headerstyle.app_bar}>
-        <View style={headerstyle.user_option}>
-            <Text style={{fontWeight: "bold", fontSize: 18, color: "black"}}>Hello, Ridho Arif</Text>
-            <Text>NoRm 082323444</Text>
-        </View>
-        <View>
-          <Image
-            style={{height: 50, width: 50, borderRadius: 40, borderColor: "#1873ac", borderWidth: 3}}
-            imageStyle={{ height: 10, width: 10}}
-            source={require('./assets/account.jpeg')}
-          />
-        </View>
-      </View>
+    <NavigationContainer>
+      <BottomNav/>
+    </NavigationContainer>
   );
 }
+
 const headerstyle = StyleSheet.create({
   app_bar : {
     justifyContent: "space-between",

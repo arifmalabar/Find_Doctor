@@ -20,10 +20,12 @@ import {User,
     StyleSheet, 
     ImageBackground, 
     Image} from "react-native";
+import Header from "../components/Header";
 export default function Home()
 {
     return (
         <View>
+          <Header/>
           <DataMenu/>
         </View>
     );
@@ -185,6 +187,8 @@ const MenuList = ()=>{
     </View>
     );
 }
+
+
 const bodyStyle = StyleSheet.create({
 listmenuitem : {
     flexDirection: "row",

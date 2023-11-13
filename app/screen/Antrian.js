@@ -2,10 +2,12 @@ import React from "react";
 import {View, Text, StyleSheet, FlatList} from "react-native";
 import {Location} from "iconsax-react-native";
 import { Data_Antrian } from "../data/data";
+import Header from "../components/Header";
 export default function Antrian() 
 {
     return (
         <View>
+            <Header/>
             <FlatList
                 data={Data_Antrian.data}
                 keyExtractor={(item) => item.id}
