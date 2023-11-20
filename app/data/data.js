@@ -47,7 +47,28 @@ export const ArtikelHangat = {
             title : "Gejala Penyakit Jantung",
             genre: "Usia Lanjut",
             image: "https://www.apotek-k24.com/images/post/16777494720230717025323yunita.isnaapakah%20penyakit%20jantung%20bisa%20sembuh.jpg.webp"
-        }
+        },
+        {
+            id : "A004",
+            title : "Mengenal Virus Nipah",
+            genre: "Anak-Anak",
+            creator : "Admin, Diana Budiarti",
+            image: "https://kaltimtoday.co/wp-content/uploads/2023/09/ilustrasi-virus-nipah-650e593987c70.jpeg"
+        },
+        {
+            id : "A005",
+            title : "Mengenal Virus Nipah",
+            genre: "Anak-Anak",
+            creator : "Admin, Diana Budiarti",
+            image: "https://kaltimtoday.co/wp-content/uploads/2023/09/ilustrasi-virus-nipah-650e593987c70.jpeg"
+        },
+        {
+            id : "A005",
+            title : "Mengenal Virus Nipah",
+            genre: "Anak-Anak",
+            creator : "Admin, Diana Budiarti",
+            image: "https://kaltimtoday.co/wp-content/uploads/2023/09/ilustrasi-virus-nipah-650e593987c70.jpeg"
+        },
     ]
 }
 export const TopikHangat = ["Cegah", "Tips", "Lansia", "Perawatan", "Stunting", "Kehamilan"];

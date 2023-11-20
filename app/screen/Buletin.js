@@ -1,32 +1,76 @@
-import React from "react";
-import {View, Text, ScrollView, TextInput, StyleSheet, FlatList, ImageBackground, Touchable, TouchableOpacity, Image} from "react-native";
-import { SearchNormal1 } from "iconsax-react-native";
+import React, {useRef} from "react";
+import {
+    View, 
+    Text, 
+    ScrollView, 
+    TextInput, 
+    StyleSheet, 
+    FlatList, 
+    ImageBackground, 
+    Touchable, 
+    TouchableOpacity, 
+    Image,
+    Animated } from "react-native";
+import { SearchNormal1, Trade } from "iconsax-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { ArtikelHangat, TopikHangat, ArtikelTerbaru, ArtikelTerbaruCategory } from "../data/data";
 
+
 export default function Buletin()
 {
-    return (
-        <ScrollView vertical>
-            <View style={{margin: 10}}>
-                <Header/>
-                <Artikel/>
-                <Topik/>
-                <NewArtikel />
-            </View>
-        </ScrollView>
-    );
-}
-const Header = () => {
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const diffClampY = Animated.diffClamp(scrollY, 0, 160);
+    const headerY = diffClampY.interpolate({
+        inputRange: [0, 40],
+        outputRange: [0, -40],
+    });
+    const recentY = diffClampY.interpolate({
+        inputRange: [0, 160],
+        outputRange: [0, -160],
+        extrapolate: 'clamp',
+    })
     return (
         <View>
+            <Animated.View style={[headerStye.container, {transform:[{translateY:headerY}]}]}>
+                <Text style={bodyStyle.container_title}>Jelajah Buletin Kesehatan</Text>
+                <Text style={{marginTop: 10, marginBottom: 10}}>Kumpulan tips kesehatan informasi penyakit dan kesehatan yang sangat lengkap</Text>
+                <View style={bodyStyle.search_box}>
+                    <SearchNormal1 variant="Linear" color="black" ></SearchNormal1>
+                    <TextInput placeholder="Cari Artikel" style={{marginLeft: 10}}></TextInput>
+                </View>
+            </Animated.View>
+            <Animated.ScrollView
+                 showsVerticalScrollIndicator={false}
+                 onScroll={Animated.event(
+                   [{nativeEvent: {contentOffset: {y: scrollY}}}],
+                   {useNativeDriver: true},
+                 )}
+                 contentContainerStyle={{paddingTop: 160}}>
+                <View>
+                    <Artikel/>
+                    <Topik/>
+                    <NewArtikel />
+                </View>
+            </Animated.ScrollView>
+        </View>
+    );
+}
+const Header = (props) => {
+    
+    const diffClampY = Animated.diffClamp(props.scrolly, 0, 160);
+    const recentY = diffClampY.interpolate({
+        inputRange: [0, 160],
+        outputRange: [0, -160],
+    })
+    return (
+        <Animated.View style={[headerStye.container, {transform:[{translateY:props.scrolly}]}]}>
             <Text style={bodyStyle.container_title}>Jelajah Buletin Kesehatan</Text>
-            <Text style={{marginTop: 10}}>Kumpulan tips kesehatan informasi penyakit dan kesehatan yang sangat lengkap</Text>
+            <Text style={{marginTop: 10, marginBottom: 10}}>Kumpulan tips kesehatan informasi penyakit dan kesehatan yang sangat lengkap</Text>
             <View style={bodyStyle.search_box}>
                 <SearchNormal1 variant="Linear" color="black" ></SearchNormal1>
                 <TextInput placeholder="Cari Artikel" style={{marginLeft: 10}}></TextInput>
             </View>
-        </View>
+        </Animated.View>
     );
 };
 const Artikel = () => {
@@ -121,6 +165,27 @@ const NewArtikel = () => {
         </View>
     );
 };
+const headerStye = StyleSheet.create({
+    container: {
+        position: 'absolute',
+        elevation: 1000,
+        zIndex: 999,
+        backgroundColor: "white"
+    },
+    header: {
+        paddingHorizontal: 24,
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 160,
+        paddingTop: 8,
+        paddingBottom: 4,
+        position: 'absolute',
+        top: 0,
+        zIndex: 1000,
+        right: 0,
+        left: 0,
+    },
+});
 const bodyStyle = StyleSheet.create({
     container_title : {
         fontSize: 16,
