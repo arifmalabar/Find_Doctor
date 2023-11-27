@@ -21,6 +21,8 @@ import {User,
     ImageBackground, 
     Image} from "react-native";
 import Header from "../components/Header";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 export default function Home()
 {
     return (
@@ -40,19 +42,23 @@ const DataMenu = () => {
     );
 };
 const Jumbotron = () => {
+    const nav = useNavigation();
     return (
       <View style={jumbotron_style.body}>
         <View>
           <Text style={jumbotron_style.title_style}>Jumlah Antrian</Text>
           <Text style={{color: "white", fontSize: 18}}>Total</Text>
           <Text style={jumbotron_style.title_style}>90</Text>
-          <View style={jumbotron_style.tombol_mulai}>
+          <TouchableOpacity 
+            style={jumbotron_style.tombol_mulai}
+            onPress={() => nav.navigate('PesanDokter')}
+          >
             <Text style={{ color: "#1873ac", fontWeight: "bold"}}>Mulai Antrian</Text>
             <ArrowRight2
               size="20"
               color="#1873ac"
             />
-          </View>
+          </TouchableOpacity>
         </View>
         <View>
           <View style={jumbotron_style.icon_container}>

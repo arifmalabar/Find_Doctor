@@ -71,5 +71,6 @@ export const ArtikelHangat = {
         },
     ]
 }
+export const DataPoli = ["Poli Mata", "Poli Anak", "Poli Jantung", "Poli Dalam"];
 export const TopikHangat = ["Cegah", "Tips", "Lansia", "Perawatan", "Stunting", "Kehamilan"];
 export const ArtikelTerbaruCategory = ["Semua", "Bayi Dan Balita", "Anak-Anak", "Remaja"];

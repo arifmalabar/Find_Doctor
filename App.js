@@ -26,6 +26,7 @@ import {
 import Buletin from "./app/screen/Buletin";
 import { NavigationContainer } from '@react-navigation/native';
 import BottomNav from "./app/components/BottomNav";
+import Login from "./app/screen/Login";
 export default function App()
 {
   return (
@@ -34,6 +35,14 @@ export default function App()
     </NavigationContainer>
   );
 }
+/*export default function App()
+{
+  return (
+    <NavigationContainer>
+      <Login/>
+    </NavigationContainer>
+  );
+}*/
 
 const headerstyle = StyleSheet.create({
   app_bar : {

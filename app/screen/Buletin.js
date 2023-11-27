@@ -29,15 +29,21 @@ export default function Buletin()
         outputRange: [0, -160],
         extrapolate: 'clamp',
     })
+    const nav = useNavigation()
     return (
-        <View>
+        <View style={{marginRight: 10, marginLeft: 10}}>
             <Animated.View style={[headerStye.container, {transform:[{translateY:headerY}]}]}>
                 <Text style={bodyStyle.container_title}>Jelajah Buletin Kesehatan</Text>
                 <Text style={{marginTop: 10, marginBottom: 10}}>Kumpulan tips kesehatan informasi penyakit dan kesehatan yang sangat lengkap</Text>
-                <View style={bodyStyle.search_box}>
+                <TouchableOpacity 
+                    style={bodyStyle.search_box}
+                    onPress={() => {
+                        nav.navigate('SearchArtikel')
+                    }}
+                >
                     <SearchNormal1 variant="Linear" color="black" ></SearchNormal1>
                     <TextInput placeholder="Cari Artikel" style={{marginLeft: 10}}></TextInput>
-                </View>
+                </TouchableOpacity>
             </Animated.View>
             <Animated.ScrollView
                  showsVerticalScrollIndicator={false}
@@ -66,10 +72,10 @@ const Header = (props) => {
         <Animated.View style={[headerStye.container, {transform:[{translateY:props.scrolly}]}]}>
             <Text style={bodyStyle.container_title}>Jelajah Buletin Kesehatan</Text>
             <Text style={{marginTop: 10, marginBottom: 10}}>Kumpulan tips kesehatan informasi penyakit dan kesehatan yang sangat lengkap</Text>
-            <View style={bodyStyle.search_box}>
+            <TouchableOpacity style={bodyStyle.search_box}>
                 <SearchNormal1 variant="Linear" color="black" ></SearchNormal1>
-                <TextInput placeholder="Cari Artikel" style={{marginLeft: 10}}></TextInput>
-            </View>
+                <Text style={{marginLeft: 10}}>Cari Artikel</Text>
+            </TouchableOpacity>
         </Animated.View>
     );
 };

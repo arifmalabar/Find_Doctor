@@ -17,6 +17,10 @@ import Antrian from "../screen/Antrian";
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ArticleDetail from "../screen/ArticleDetail";
+import Account from "../screen/Account";
+import SearchArtikel from "../screen/SearchArtikel";
+import PesanDokter from "../screen/PesanDokter";
+import Login from "../screen/Login";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 function AppFragment()
@@ -25,9 +29,9 @@ function AppFragment()
         <Tab.Navigator
             screenOptions={{
                 tabBarActiveTintColor: "#3399ff",
-                tabBarInactiveTintColor: "black",
+                tabBarInactiveTintColor: "grey",
                 tabBarStyle : {
-                    height: 48, 
+                    height: 50, 
                     paddingBottom: 8,
                     paddingTop: 8
                 },
@@ -49,7 +53,7 @@ function AppFragment()
                         ),
                         headerShown: false
                     }}/>
-                    <Tab.Screen
+                <Tab.Screen
                     name = "Antrian"
                     component={Antrian}
                     options={{
@@ -77,6 +81,22 @@ function AppFragment()
                         ),
                         headerShown: false
                     }}/>
+                    <Tab.Screen 
+                        name="Account"
+                        component={Account}
+                        options={{
+                            tabBarLabel: 'Account',
+                            tabBarIcon: ({focused, color}) => (
+                                <User
+                                    color={color}
+                                    variant={focused ? 'Bold' : 'Linear'}
+                                    size={24}
+                                />
+                            ),
+                            headerShown: false
+                        }}
+                    />
+
             </Tab.Navigator>
     );
 }
@@ -86,6 +106,16 @@ const BottomNav = () => {
             <Stack.Screen
                 name="AppFragment"
                 component={AppFragment}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name="SearchArtikel"
+                component={SearchArtikel}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name="PesanDokter"
+                component={PesanDokter}
                 options={{headerShown: false}}
             />
             <Stack.Screen
