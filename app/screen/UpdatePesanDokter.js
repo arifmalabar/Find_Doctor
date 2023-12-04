@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import {View, Text, StyleSheet, TextInput, SafeAreaView, Button} from "react-native"
 import InputBox from "../components/InputBox"
 import SelectDropdown from 'react-native-select-dropdown'
@@ -8,8 +8,10 @@ import { TouchableOpacity } from "react-native-gesture-handler"
 import { useNavigation } from "@react-navigation/native"
 import { data_poli, data_dokter } from "../data/data"
 import axios from "axios"
-export default function PesanDokter() {
+export default function UpdatePesanDokter({route}) {
+    const {idPesan} = route.params;
     const nav = useNavigation();
+    const [detailPesan, setDetailPesan] = useState([]);
     const [pesan, setPesan] = useState({
         NIK : "",
         nama : "",
@@ -27,10 +29,21 @@ export default function PesanDokter() {
                 [key] : value
         });
     }
-    const insertData = async () => {
+    const getDataById = async () => {
         setLoading(true);
         try {
-            await axios.post("https://656d2369bcc5618d3c22dc61.mockapi.io/finddoctor/pesan_antrian", {
+            const response = await axios.get(`https://656d2369bcc5618d3c22dc61.mockapi.io/finddoctor/pesan_antrian/${idPesan}`);
+            setDetailPesan(response.data);
+            console.log(detailPesan);
+        } catch (error) {
+            console.log(error);
+        }
+        setLoading(false);
+    }
+    const updateData = async () => {
+        setLoading(true);
+        try {
+            await axios.put(`https://656d2369bcc5618d3c22dc61.mockapi.io/finddoctor/pesan_antrian/${idPesan}`, {
                 NIK : pesan.NIK,
                 nama : pesan.nama,
                 alamat : pesan.alamat,
@@ -39,9 +52,9 @@ export default function PesanDokter() {
                 poli : pesan.poli,
                 jadwal: "07.00"
             }).then(function (params) {
-                //console.log(params)
+                console.log(params)
             }).catch(function (err) {
-                //console.log(err)
+                console.log(err)
             });
             setLoading(false);
             nav.navigate('Antrian');
@@ -50,6 +63,9 @@ export default function PesanDokter() {
         }
         console.log(pesan);
     }
+    useEffect(() =>{
+        getDataById();
+    }, []);
     return (
         <View>
             <SafeAreaView style={input_style.header}>
@@ -63,7 +79,7 @@ export default function PesanDokter() {
                         size={30}
                     />
                 </TouchableOpacity>
-                <Text style={input_style.header_title}>Tambah Antrian</Text>
+                <Text style={input_style.header_title}>Update Antrian</Text>
             </SafeAreaView>
             <View style={input_style.main_body}>
                 <View style={input_style.input_group}>
@@ -71,6 +87,7 @@ export default function PesanDokter() {
                     <TextInput
                         style={input_style.input_text}
                         inputMode=""
+                        value={detailPesan.NIK}
                         placeholder="Masukan NIK"
                         onChangeText={(text) => inputHandler("NIK", text)}
                     />
@@ -80,6 +97,7 @@ export default function PesanDokter() {
                     <TextInput
                         style={input_style.input_text}
                         placeholder="Masukan Nama"
+                        value={detailPesan.nama}
                         onChangeText={(text) => inputHandler("nama", text)}
                     />
                 </View>
@@ -133,6 +151,7 @@ export default function PesanDokter() {
                         keyboardType="numeric"
                         style={input_style.input_text}
                         placeholder="Masukan Notelp"
+                        value={detailPesan.notelp}
                         onChangeText={(text) => inputHandler("notelp", text)}
                     />
                 </View>
@@ -141,6 +160,7 @@ export default function PesanDokter() {
                     <TextInput
                         placeholder="Masukan Alamat" 
                         style={input_style.input_textarea}
+                        value={detailPesan.alamat}
                         multiline
                         onChange={(text) => inputHandler("alamat", "asassasa")}
                     />
@@ -150,7 +170,7 @@ export default function PesanDokter() {
                 <Button 
                     title="BUAT ANTRIAN BARU"
                     color="#1873ac"
-                    onPress={insertData}
+                    onPress={updateData}
                  ></Button>
             </View>
         </View>

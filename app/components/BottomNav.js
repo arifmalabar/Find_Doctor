@@ -21,6 +21,7 @@ import Account from "../screen/Account";
 import SearchArtikel from "../screen/SearchArtikel";
 import PesanDokter from "../screen/PesanDokter";
 import Login from "../screen/Login";
+import UpdatePesanDokter from "../screen/UpdatePesanDokter";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 function AppFragment()
@@ -116,6 +117,11 @@ const BottomNav = () => {
             <Stack.Screen
                 name="PesanDokter"
                 component={PesanDokter}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen
+                name="UpdatePesanDokter"
+                component={UpdatePesanDokter}
                 options={{headerShown: false}}
             />
             <Stack.Screen
