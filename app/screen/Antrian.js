@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {View, Text, StyleSheet, FlatList} from "react-native";
 import {Location, ActivityIndicator} from "iconsax-react-native";
 import { Data_Antrian } from "../data/data";
@@ -7,7 +7,7 @@ import { getData } from "../config/fetch_data";
 import axios from "axios";
 import { antrian as urlAntrian } from "../config/end_points";
 import ActionSheet from "react-native-actions-sheet";
-import { RefreshControl, TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 export default function Antrian() 
 {
@@ -32,35 +32,24 @@ export default function Antrian()
             console.log(error); 
         }
     }
-    const deleteAntrian = async (id) => {
+    const deleteDataPesan = async (idPesan) => {
+        setLoading(true);
         try {
-            setLoading(true);
-            await axios
-                .delete(`https://656d2369bcc5618d3c22dc61.mockapi.io/finddoctor/pesan_antrian/${id}`)
-                .then(function (params) {
-                    console.log(params);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            await axios.delete(`https://656d2369bcc5618d3c22dc61.mockapi.io/finddoctor/pesan_antrian/${idPesan}`)
+            .then(function (params) {
+                console.log(params)
+            }).catch(function (err) {
+                console.log(err)
+            });
             setLoading(false);
-            closeActionSheet();
             showAntrian();
-            
         } catch (error) {
-            
+            console.log(error);
         }
     }
     useEffect(() => {
         showAntrian();
     }, []);
-    const onRefresh = useCallback(() => {
-        setRefresh(true);
-        setTimeout(() => {
-            showAntrian();
-            setRefresh(false);
-        }, 1500);
-      }, []);
     return (
         <View>
             <Header/>
@@ -71,7 +60,6 @@ export default function Antrian()
             ) : (
                 <FlatList
                     data={antrian}
-                    refreshControl={<RefreshControl refreshing={refresh} onRefresh={onRefresh}/> }
                     keyExtractor={(item) => item.id}
                     renderItem={({item}) => (
                         <View>
@@ -113,7 +101,7 @@ export default function Antrian()
                                     </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
-                                    onPress={deleteAntrian(item.id)}
+                                    onPress={() => deleteDataPesan}
                                     style={card_view.open_sheet_box}>
                                     <Text
                                         style={{color: "red"}}>

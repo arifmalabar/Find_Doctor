@@ -104,10 +104,14 @@ const BottomJumbotron = () => {
     );
 }
 const MenuList = ()=>{
+    const nav = useNavigation();
     return (
       <View style={menuStyle.body}>
       <View style={menuStyle.icon_container}>
-        <View style={menuStyle.icon_box}>
+        <TouchableOpacity 
+          style={menuStyle.icon_box}
+          onPress={() => nav.navigate('Dokter')}
+        >
           <View style={menuStyle.icon}>
             <UserSearch
                 variant="Bold"
@@ -116,7 +120,7 @@ const MenuList = ()=>{
               />
           </View>
           <Text>Data Dokter</Text>
-        </View>
+        </TouchableOpacity>
         <View style={menuStyle.icon_box}>
           <View style={menuStyle.icon}>
             <Courthouse

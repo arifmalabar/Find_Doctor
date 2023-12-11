@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "944678776026",
+    "project_id": "find-doctor-cebc5",
+    "storage_bucket": "find-doctor-cebc5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944678776026:android:4b31a3b54259dcf9cc49e3",
+        "android_client_info": {
+          "package_name": "com.find_doctor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPjVL1HkgAYNACpLpt9Rb9_Lcr09n2L0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

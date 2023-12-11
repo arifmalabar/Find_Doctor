@@ -50,7 +50,7 @@ export default function UpdatePesanDokter({route}) {
                 dokter: pesan.dokter,
                 notelp: pesan.notelp,
                 poli : pesan.poli,
-                jadwal: "07.00"
+                jadwal: "08.00"
             }).then(function (params) {
                 console.log(params)
             }).catch(function (err) {
@@ -63,6 +63,7 @@ export default function UpdatePesanDokter({route}) {
         }
         console.log(pesan);
     }
+    
     useEffect(() =>{
         getDataById();
     }, []);
@@ -86,7 +87,6 @@ export default function UpdatePesanDokter({route}) {
                     <Text style={input_style.label}>NIK/No KTP/KK</Text>
                     <TextInput
                         style={input_style.input_text}
-                        inputMode=""
                         value={detailPesan.NIK}
                         placeholder="Masukan NIK"
                         onChangeText={(text) => inputHandler("NIK", text)}
@@ -162,15 +162,15 @@ export default function UpdatePesanDokter({route}) {
                         style={input_style.input_textarea}
                         value={detailPesan.alamat}
                         multiline
-                        onChange={(text) => inputHandler("alamat", "asassasa")}
+                        onChange={(text) => inputHandler("alamat", text)}
                     />
                 </View>
             </View>
             <View style={input_style.footer}>
                 <Button 
-                    title="BUAT ANTRIAN BARU"
-                    color="#1873ac"
-                    onPress={updateData}
+                    title="UPDATE ANTRIAN"
+                    color="#ffb300"
+                    onPress={() => updateData}
                  ></Button>
             </View>
         </View>

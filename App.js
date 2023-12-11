@@ -27,6 +27,8 @@ import Buletin from "./app/screen/Buletin";
 import { NavigationContainer } from '@react-navigation/native';
 import BottomNav from "./app/components/BottomNav";
 import Login from "./app/screen/Login";
+import DetailDokter from "./app/screen/DetailDokter";
+import Dokter from "./app/screen/Dokter";
 export default function App()
 {
   return (
@@ -39,7 +41,7 @@ export default function App()
 {
   return (
     <NavigationContainer>
-      <Login/>
+      <Dokter/>
     </NavigationContainer>
   );
 }*/
