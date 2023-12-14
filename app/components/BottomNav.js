@@ -26,6 +26,7 @@ import DetailDokter from "../screen/DetailDokter";
 import Dokter from "../screen/Dokter";
 import TambahDokter from "../screen/TambahDokter";
 import UpdateDokter from "../screen/UpdateDokter";
+import Register from "../screen/Register";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 function AppFragment()
@@ -107,12 +108,23 @@ function AppFragment()
 }
 const BottomNav = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen 
+                name="Register"
+                component={Register}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen 
+                name="Login"
+                component={Login}
+                options={{headerShown: false}}
+            />
             <Stack.Screen
                 name="AppFragment"
                 component={AppFragment}
                 options={{headerShown: false}}
             />
+            
             <Stack.Screen
                 name="SearchArtikel"
                 component={SearchArtikel}
@@ -159,6 +171,7 @@ const BottomNav = () => {
                     ...TransitionPresets.SlideFromRightIOS
                 }}
             />
+            
         </Stack.Navigator>
     );
 }

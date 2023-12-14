@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import {
     View, 
     Text, 
@@ -6,11 +6,12 @@ import {
     StyleSheet, 
     ImageBackground, 
     Image} from "react-native"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Header = () => {
     return (
         <View style={headerstyle.app_bar}>
           <View style={headerstyle.user_option}>
-              <Text style={{fontWeight: "bold", fontSize: 18, color: "black"}}>Hello, Ridho Arif</Text>
+              <Text style={{fontWeight: "bold", fontSize: 18, color: "black"}}>Hello, User</Text>
               <Text>NoRm 082323444</Text>
           </View>
           <View>
